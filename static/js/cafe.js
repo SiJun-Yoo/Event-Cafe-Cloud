@@ -29,7 +29,6 @@ function kakaoMapAPI(x, y) {
         center: new kakao.maps.LatLng(x, y), //지도의 중심좌표.
         level: 3 //지도의 레벨(확대, 축소 정도)
     };
-    console.log(options);
     let map = new kakao.maps.Map(container, options);
 }
 
