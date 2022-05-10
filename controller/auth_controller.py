@@ -52,7 +52,7 @@ def join():
 @bp.route("/api/join/double_check", methods=["POST"])
 def double_check():
     user_id = request.form['user_id_give']
-    checkResult = bool(DB.find_one("users", {"user_id": user_id},{'_id':False}))
+    checkResult = bool(DB.find_one("users", {"user_id": user_id}, {"_id": False}))
     return jsonify({'result': 'success', 'checkResult': checkResult})
 
 
@@ -62,7 +62,7 @@ def login():
     pw = request.form["user_pw_give"]
     user_pw = hashlib.sha256(pw.encode('utf-8')).hexdigest()
 
-    result = DB.find_one("users", {'user_id': user_id, 'user_pw': user_pw})
+    result = DB.find_one("users", {'user_id': user_id, 'user_pw': user_pw}, {"_id": False})
     user_nickname = result['user_nickname']
 
     if result is not None:

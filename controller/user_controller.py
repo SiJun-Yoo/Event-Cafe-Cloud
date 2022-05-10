@@ -12,23 +12,39 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 def home():
     user = ECTOKEN.get_token(object)
     if user is not None:
-        return render_template('userProfile.html', user=user)
+        if user["cafe"] >= 1:
+            my_cafe = DB.find_one("cafes", {'user_id': user["user_id"]}, {'_id': False})
+            return render_template('userProfile.html', user=user, my_cafe=my_cafe)
+        else:
+            return render_template('userProfile.html', user=user)
     else:
         return render_template('userProfile.html', msg="로그인 정보가 없습니다")
 
 
-@bp.route('/cafe/manage')
-def cafe_manage():
-    return render_template('cafeManagemetn.html')
+@bp.route('/cafe/manage/<cafe_idx>')
+def cafe_manage(cafe_idx):
+    user = ECTOKEN.get_token(object)
+    if user is None:
+        return render_template('index.html')
+    else:
+        return render_template('cafeManagement.html', user=user, cafe_idx=cafe_idx)
 
 
 @bp.route('/cafe/register')
 def cafe_register_form():
     user = ECTOKEN.get_token(object)
     if user is None:
-        return render_template('cafeRegister.html')
+        return render_template('index.html')
     else:
         return render_template('cafeRegister.html', user=user)
+
+
+@bp.route('api/cafe/management', methods=["GET"])
+def show_cafe_manage():
+    ###############################
+    #todo 이벤트 DB 생성후, 추가 예정#
+    ###############################
+    return
 
 
 @bp.route('/api/cafe/register', methods=["POST"])
@@ -42,7 +58,7 @@ def cafe_register():
     cafe_zipcode = request.form['cafe_zipcode_give']
     cafe_address = request.form['cafe_address_give']
     cafe_address_detail = request.form['cafe_address_detail']
-    cafe_count = DB.count("cafes")
+    cafe_count = DB.count_collection("cafes")
     extension = cafe_image.filename.split('.')[-1]
 
     save_to = f'static/cafe_pics/{user_id}_{cafe_name}.{extension}'

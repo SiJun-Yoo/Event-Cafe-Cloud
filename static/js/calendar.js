@@ -165,7 +165,7 @@ function buildCalendar() {
 function calendarChoiceDay(column) {
     // @param 기존 선택일이 존재하는 경우 기존 선택일의 표시형식을 초기화 한다.
     if (document.getElementsByClassName("choiceDay")[0]) {
-        document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#FFFFFF";
+        document.getElementsByClassName("choiceDay")[0].style.backgroundColor = "#E6E6FA";
         document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");
     }
     // @param 선택일 체크 표시

@@ -8,7 +8,6 @@ bp = Blueprint('cafe', __name__)
 def routeCafeDetail():
     return render_template('cafeDetail.html')
 
-
 @bp.route('/api/cafe/detail/<cafeId>')
 def getCafeDetail(cafeId):
     cafes = DB.find_one('cafes', {'idx': int(cafeId)},{'_id':False})

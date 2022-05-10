@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Dongle&family=Jua&family=Poor+Story&display=swap"
           rel="stylesheet">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
@@ -82,7 +82,7 @@
         </div>
     {% else %}
         <div class="welcome-message">
-            <a href="/userProfile">{{ user["user_nickname"] }}님</a> 환영합니다 &nbsp;&nbsp;
+            <a href="/user/profile">{{ user["user_nickname"] }}님</a> 환영합니다 &nbsp;&nbsp;
             <button class="banner-button" onclick=logout()>로그아웃</button>
         </div>
     {% endif %}
@@ -106,9 +106,12 @@
     </button>
     &nbsp;&nbsp;
     {% if user["cafe"] %}
-    <button type="button" class="btn btn-outline-primary updBtn" onclick="location.href='/user/cafe/manage'">내 카페 관리</button>
+        <button type="button" class="btn btn-outline-primary updBtn" onclick="location.href='/user/cafe/manage/{{ my_cafe['idx'] }}'">내 카페
+            관리
+        </button>
     {% else %}
-    <button type="button" class="btn btn-outline-primary updBtn" onclick="location.href='/user/cafe/register'">내 카페 등록</button>
+        <button type="button" class="btn btn-outline-primary updBtn" onclick="location.href='/user/cafe/register'">내 카페 등록
+        </button>
     {% endif %}
 </div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -1,0 +1,67 @@
+.profileBox {
+    margin-top: 20px;
+    margin: auto;
+    border-radius: 2%;
+    width: 1000px;
+    padding-bottom: 20px;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.profile-user-img {
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.profile-user-img-img {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+    margin: 0px auto;
+}
+
+.profile-nickname {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.profile-text {
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    font-size: 30px;
+    color: #FFAFAF;
+    font-family: 'Gowun Dodum', sans-serif;
+    width: 250px;
+    border-bottom: 1px solid #FFAFAF;
+}
+
+.profile-info {
+    color: #999999;
+    margin-bottom: 20px
+}
+
+.cafeBtn {
+    background-color: mediumpurple;
+    color: white;
+    font-weight: bold;
+    font-family: 'Gowun Dodum', sans-serif;
+    border: lavender;
+}
+
+.updBtn {
+    background-color: white;
+    color: mediumpurple;
+    font-weight: bold;
+    font-family: 'Gowun Dodum', sans-serif;
+    border: lavender;
+}

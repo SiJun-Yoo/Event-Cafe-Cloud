@@ -32,14 +32,14 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <meta charset="UTF-8">
     <!-- CSS 링크 -->
-    <link href="../static/css/bannerstyle.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/loginstyle.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/profilestyle.css" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/calendar.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/bannerstyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/loginstyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/cafeprofilestyle.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../static/css/calendar.css" rel="stylesheet" type="text/css"/>
 
     <!-- JS 링크 -->
-    <script src="../static/js/login_out.js"></script>
-    <script src="../static/js/calendar.js"></script>
+    <script src="../../../static/js/login_out.js"></script>
+    <script src="../../../static/js/calendar.js"></script>
 
     <title>Event Cafe Cloude | EC2</title>
 
@@ -74,31 +74,23 @@
     </style>
 
     <script>
-        function updProfile() {
-            let user_nickname = $('#input-nickname').val()
-            let user_info = $('#input-userinfo').val()
-            let user_img = $('#file')[0].files[0]
+        $(document).ready(showCafeManagement)
 
-            console.log(user_nickname, user_info, user_img)
-
-            let form_data = new FormData()
-
-            form_data.append("user_nickname_give", user_nickname)
-            form_data.append("user_userinfo_give", user_info)
-            form_data.append("user_profile_give", user_img)
-
-            console.log(form_data)
-
+        function showCafeManagement() {
             $.ajax({
-                type: "POST",
-                url: "/user/api/update",
-                data: form_data,
-                cache: false,
-                contentType: false,
-                processData: false,
+                type: 'GET',
+                url: '/api/cafe/management',
+                data:{},
                 success: function (response) {
-                    alert("수정 완료!")
-                    window.location.replace("/user/profile")
+                    let cafe_id = response['cafe_id'];
+                    let user_id = response['user_id'];
+                    let start_date = response['start_date'];
+                    let end_date = response['end_date'];
+                    let event_category = response['event_category'];
+
+                    $('#cafe-name').text(cafe_name);
+                    $('#info').text(cafe_info);
+                    kakaoMapAPI(x, y);
                 }
             });
         }
@@ -114,15 +106,15 @@
         </div>
     {% else %}
         <div class="welcome-message">
-            <a href="/userProfile">{{ user["user_nickname"] }}님</a> 환영합니다 &nbsp;&nbsp;
+            <a href="/user/profile">{{ user["user_nickname"] }}님</a> 환영합니다 &nbsp;&nbsp;
             <button class="banner-button" onclick=logout()>로그아웃</button>
         </div>
     {% endif %}
     <div class="banner-logo">
-        <img src="../static/ec2_logo.png" onclick="location.href='/'">
+        <img src="../../../static/ec2_logo.png" onclick="location.href='/'">
     </div>
 </section>
-<div class="profile-text"><i class="fa-solid fa-calendar-check"></i>&nbsp Reservation</div>
+<div class="profile-text"><i class="fa-solid fa-calendar-days"></i>&nbsp Reservation</div>
 <div class="profileBox">
     <table class="scriptCalendar">
         <thead>
@@ -147,10 +139,25 @@
         <tbody></tbody>
     </table>
 </div>
-<div class="profile-text"><i class="fa-solid fa-cloud"></i>&nbsp Reviews</div>
+<div class="profile-text"><i class="fa-solid fa-calendar-check"></i>&nbsp List</div>
 <div class="profileBox">
+    <div class="card border-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">카테고리 / 예약자이름</div>
+        <div class="card-body">
+            <h4 class="card-title">startDate ~ endDate (n일)</h4>
+            <p class="card-text">cost</p>
+        </div>
+    </div>
 </div>
-<div class="profile-text"><i class="fa-solid fa-mug-saucer"></i>&nbsp etc</div>
-<div class="profileBox"></div>
+<div class="profile-text"><i class="fa-solid fa-calendar-plus"></i>&nbsp Watining</div>
+<div class="profileBox">
+    <div class="card border-warning mb-3" style="max-width: 20rem;">
+        <div class="card-header">카테고리 / 예약자이름 </div>
+        <div class="card-body">
+            <h4 class="card-title">startDate ~ endDate (n일)</h4>
+            <p class="card-text">cost</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
