@@ -72,7 +72,7 @@ function listing() {
                 let class_bookmark = cafes[i]['bookmark_by_me'] ? "fa-bookmark" : "fa-bookmark-o"
 
                 let temp_html = `<div class="card" id="${cafe_id}" style="width: 30%; border-radius: 10px; margin: 15px">
-                                        <img class="card-img-top" src="../static/cafe_pics/${cafe_image}" alt="Card image cap">
+                                        <img class="card-img-top" src="../static/cafe_pics/${cafe_image}" style = "height:300px" alt="Card image cap">
                                         <div class="card-body">
                                             <h3 class="card-title">${cafe_name}&nbsp;&nbsp;<a class="level-item is-sparta" aria-label="bookmark" onclick="toggle_heart('${cafe_id}', 'bookmark')" style="color: dodgerblue">
                                                 <span class="icon is-small"><i class="fa ${class_bookmark}" aria-hidden="true"></i></span></a>
@@ -116,7 +116,7 @@ function listing_event(event_category) {
                 let cafe_id = events[i]['cafe_id']
 
                 let temp_html = `<div class="card" id="${event_id}" style="width: 30%; border-radius: 10px; margin: 15px">
-                                        <img class="card-img-top" src="../static/event_img/${event_image}" alt="Card image cap">
+                                        <img class="card-img-top" style = "{height:300px}" src="../static/event_img/${event_image}" alt="Card image cap">
                                         <div class="card-body">
                                             <span class="badge badge-primary" style="background-color: dodgerblue; margin-bottom: 10px">${event_category}</span>
                                             <h3 class="card-title">${event_name}
